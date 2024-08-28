@@ -1,0 +1,19 @@
+{
+  "name": "parabank",
+  "version": "1.0.0",
+  "description": "This project automates the testing of the Parabank website (https://parabank.parasoft.com/parabank/index.htm) using Cypress and the Page Object Model (POM) framework. The tests cover the following scenarios:",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cypress": "^13.14.0"
+  },
+  "devDependencies": {
+    "@faker-js/faker": "^8.4.1",
+    "cypress-xpath": "^2.0.1"
+  }
+}
