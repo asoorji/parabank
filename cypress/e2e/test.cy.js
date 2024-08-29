@@ -4,6 +4,7 @@ const HomePage = require('../pages/homePage');
 const OpenAccountPage = require('../pages/openAccountPage');
 const TransferFundPagee = require('../pages/transferFundPage');
 const RequestLoanPage = require('../pages/requestLoanPage');
+const testData = require('../fixtures/testData.json');
 
 describe('Parabank Functional Test', () => {
   const registerPage = new RegisterPage();
@@ -14,34 +15,13 @@ describe('Parabank Functional Test', () => {
   const requestLoanPage = new RequestLoanPage();
 
   it('Register New User with a unique username', () => {
-    let randomUser = registerPage.generateRandomUser();
+    let user = registerPage.generateUser();
     registerPage.visit();
-    registerPage.register(randomUser);
+    registerPage.register(user);
 
     // Assert that the account was created successfully
     cy.xpath("//p[contains(text(),'Your account was created successfully. You are now')]").should('be.visible');
-    cy.xpath(`//h1[normalize-space()='Welcome ${randomUser.username}']`).should('be.visible');
-  
-    // const tryRegister = () => {
-    //   registerPage.visit();
-    //   registerPage.register(randomUser);
-
-    //   registerPage.checkUsernameExists().then((exists) => {
-    //     if (exists) {
-    //       console.log('Username already exists, generating a new one');
-    //       randomUser.username = faker.internet.userName(); 
-    //       registerPage.usernameInput().clear(); 
-    //       tryRegister(); 
-    //     } else {
-    //       console.log('Username is available, registering the user');
-    //       cy.contains('Your account was created successfully').should('be.visible');
-    //       cy.get('h1').should('contain', `Welcome, ${randomUser.username}`);
-    //     }
-    //   });
-    // }
-
-    // tryRegister();
-
+    cy.xpath(`//h1[normalize-space()='Welcome ${user.username}']`).should('be.visible');
   })
 
   it('Login with registered user', () => {
@@ -79,7 +59,7 @@ describe('Parabank Functional Test', () => {
     cy.contains('Your new account number').should('be.visible');
   })
 
-  it.only(' Transfer Funds', () => {
+  it(' Transfer Funds', () => {
     loginPage.visit();
     const username = Cypress.env('username');
     const password = Cypress.env('password');

@@ -18,7 +18,7 @@ class RegisterPage {
       this.usernameExistsError = () => cy.contains('This username already exists'); 
     }
   
-    generateRandomUser() {
+    generateUser() {
       return {
         firstName: faker.name.firstName(),
         lastName: faker.name.lastName(),

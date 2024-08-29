@@ -6,8 +6,8 @@ module.exports = defineConfig({
     openMode: 1   
   },
   env: {
-    username: "Orjibra",
-    password: "123456"
+    username: process.env.CYPRESS_USERNAME || "Orjibra",
+    password: process.env.CYPRESS_PASSWORD || "123456"
   },
   e2e: {
     baseUrl: 'https://parabank.parasoft.com/parabank/',

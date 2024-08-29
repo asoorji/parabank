@@ -8,10 +8,12 @@ class TransferFundPage {
   
     transferFund() {
       cy.fixture('testData').then((data) => {
-        const transferAmount = data.transferAmount;
+      const transferAmount = data.transferAmount;
   
         this.transferFundText().click();
+        
         // this.successText().should('be.visible');
+        cy.wait(10000);
         this.amount().type(transferAmount);
         this.transferButton().click();
       });

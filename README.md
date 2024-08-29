@@ -29,3 +29,4 @@ Link to Testcase: here(https://docs.google.com/spreadsheets/d/18ErQD--cpxCAq96CI
 Faker for test data
 Checks for existing username
 implement retry mechanism
+CI CD with github action which sends daily mail

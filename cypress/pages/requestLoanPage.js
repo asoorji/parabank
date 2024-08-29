@@ -12,8 +12,9 @@ class RequestLoanPage {
         const loanAmount = data.loanAmount;
         const downPayment = data.downPayment;
        
-        this.requestLoanText.click();
+        this.requestLoanText().click();
         // this.successText().should('be.visible');
+        cy.wait(10000);
         this.loanAmount().type(loanAmount);
         this.downPayment().type(downPayment);
         this.applyButton().click();
