@@ -15,6 +15,7 @@ class RegisterPage {
       this.passwordInput = () => cy.xpath("//input[@id='customer.password']");
       this.confirmPasswordInput = () => cy.xpath("//input[@id='repeatedPassword']");
       this.registerButton = () => cy.xpath("//input[@value='Register']");  
+      this.usernameExistsError = () => cy.contains('This username already exists'); 
     }
   
     generateRandomUser() {
@@ -25,7 +26,7 @@ class RegisterPage {
         city: faker.address.city(),
         state: faker.address.state(),
         zipCode: faker.address.zipCode(),
-        phone: faker.phone.number('###-###-####'), 
+        phone: `+234${faker.phone.number('##########')}`,
         ssn: faker.finance.account(9), 
         username: faker.internet.userName(),
         password: faker.internet.password(),
@@ -48,8 +49,12 @@ class RegisterPage {
       this.ssnInput().type(user.ssn);
       this.usernameInput().type(user.username);
       this.passwordInput().type(user.password);
-      this.confirmPasswordInput().type(user.confirmPassword);
+      this.confirmPasswordInput().type(user.password);
       this.registerButton().click();
+    }
+
+    checkUsernameExists() {
+      return this.usernameExistsError().should('be.visible');
     }
   }
   

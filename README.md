@@ -1,6 +1,5 @@
 # Parabank GUI Automation with Cypress
 
-Faker for test data
 
 This project automates the testing of the Parabank website (https://parabank.parasoft.com/parabank/index.htm) using Cypress and the Page Object Model (POM) framework. The tests cover the following scenarios:
 
@@ -24,4 +23,9 @@ Link to Testcase: here(https://docs.google.com/spreadsheets/d/18ErQD--cpxCAq96CI
 
 1. Clone the repository:
    ```bash
-   git clone <repository-link>
+   git clone git push --set-upstream https://github.com/asoorji/parabank.git master
+
+
+Faker for test data
+Checks for existing username
+implement retry mechanism
