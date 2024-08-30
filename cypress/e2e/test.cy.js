@@ -25,7 +25,7 @@ describe('Parabank Functional Test', () => {
     cy.xpath("//h1[normalize-space()='Accounts Overview']").should('be.visible');
   });
 
-  it.only('Register New User with a unique username', () => {
+  it('Register New User with a unique username', () => {
     let user = registerPage.generateUser();
     registerPage.visit();
     registerPage.register(user);

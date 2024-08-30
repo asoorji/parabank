@@ -1,10 +1,13 @@
-name: Cypress Tests
+name: Parabank Tests
 
 on:
   push:
-    branches: [main]
+    branches: [ main, master ]
   pull_request:
-    branches: [main]
+    branches: [ main, master ]
+  schedule:
+    - cron: '0 8 * * *'  # Runs at 8 AM UTC every day
+  workflow_dispatch:
 
 jobs:
   build:
@@ -19,3 +22,18 @@ jobs:
         uses: cypress-io/github-action@v7
         with:
           start: npx cypress run 
+      - name: Send Email with Cypress Report
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 587
+          username: ${{ secrets.EMAIL_USERNAME }}
+          password: ${{ secrets.EMAIL_PASSWORD }}
+          subject: Shop APi Test Report
+          to: orji@outlook.com
+          from: ndubuisiaso@gmail.com
+          body: "Please find attached daily scheduled test report."
+          content_type: text/html
+          attachments: index.html
+      
+    
