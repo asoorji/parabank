@@ -11,7 +11,12 @@ This project automates the testing of the Parabank website using Cypress and the
 - Request a Loan
 - Logout
 
-**Test Case Documentation:** [Link to Test Cases]
+## Features
+
+- **Faker for Test Data:** Faker is used to generate dynamic test data such as usernames, addresses, and phone numbers.
+- **Username Uniqueness Check:** The automation script checks for existing usernames during registration and generates a unique username if needed.
+- **Retry Mechanism:** The retry mechanism is implemented to handle flaky tests and ensure reliable test execution.
+- **Daily Email Notifications:** GitHub Actions configuration includes a step to send daily email notifications with test results.
 
 ## Project Setup
 
@@ -60,7 +65,7 @@ To execute the tests locally:
 - **Cypress Configuration:** Configuration is managed in `cypress.config.js`. Update environment variables and base URL as needed.
 - **Test Data:** Test data is managed using `cypress/fixtures/testData.json`. You can modify this file to update test inputs such as usernames, passwords, and transfer amounts.
 - **Retry Mechanism:** The test retry mechanism is configured to handle flaky tests. The retries are set in `cypress.config.js` for both `runMode` and `openMode`.
-- **CI/CD Integration:** The project uses GitHub Actions for Continuous Integration and Deployment. The configuration file `.github/workflows/cypress.yml` is set up to run tests on each push or pull request and to generate and upload test reports.
+- **CI/CD Integration:** The project uses GitHub Actions for Continuous Integration and Deployment. The configuration file `.github/workflows/main.yml` is set up to run tests on each push or pull request and to generate and upload test reports.
 
 ## Reporting
 
@@ -72,9 +77,3 @@ To execute the tests locally:
 
 - **Cypress Dashboard:** For real-time test monitoring and detailed reports, integrate with the Cypress Dashboard by configuring `cypress.config.js` with your project ID and record key.
 
-## Features
-
-- **Faker for Test Data:** Faker is used to generate dynamic test data such as usernames, addresses, and phone numbers.
-- **Username Uniqueness Check:** The automation script checks for existing usernames during registration and generates a unique username if needed.
-- **Retry Mechanism:** The retry mechanism is implemented to handle flaky tests and ensure reliable test execution.
-- **Daily Email Notifications:** GitHub Actions configuration includes a step to send daily email notifications with test results.

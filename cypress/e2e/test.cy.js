@@ -14,7 +14,18 @@ describe('Parabank Functional Test', () => {
   const transferFundPage = new TransferFundPagee();
   const requestLoanPage = new RequestLoanPage();
 
-  it('Register New User with a unique username', () => {
+  beforeEach(() => {
+    loginPage.visit();
+    const username = Cypress.env('username');
+    const password = Cypress.env('password');
+    loginPage.login(username, password);
+    
+    // Assert the user is logged in by checking the URL or a unique element on the page
+    cy.url().should('include', '/overview');
+    cy.xpath("//h1[normalize-space()='Accounts Overview']").should('be.visible');
+  });
+
+  it.only('Register New User with a unique username', () => {
     let user = registerPage.generateUser();
     registerPage.visit();
     registerPage.register(user);
@@ -24,33 +35,19 @@ describe('Parabank Functional Test', () => {
     cy.xpath(`//h1[normalize-space()='Welcome ${user.username}']`).should('be.visible');
   })
 
-  it('Login with registered user', () => {
-    loginPage.visit();
-    const username = Cypress.env('username');
-    const password = Cypress.env('password');
-    loginPage.login(username, password);
-    
-    // Assert that the user is on the overview page after login
-    cy.url().should('include', '/overview');
-    cy.xpath("//h1[normalize-space()='Accounts Overview']").should('be.visible');
-  })
-
   it('Invalid Login Credential', () => {
+    homePage.logout();
     loginPage.visit();
     const invalidUsername = 'wrongUsername';
     const invalidPassword = 'wrongPassword';
     loginPage.login(invalidUsername, invalidPassword);
 
     // Assert that the error message is displayed
-    // cy.xpath("//h1[normalize-space()='Error!']").should('be.visible');
-    // cy.xpath("//p[@class='error']").should('be.visible');
+    cy.xpath("//h1[normalize-space()='Error!']").should('be.visible');
+    cy.xpath("//p[@class='error']").should('be.visible');
   })
 
   it('Open an Account', () => {
-    loginPage.visit();
-    const username = Cypress.env('username');
-    const password = Cypress.env('password');
-    loginPage.login(username, password);
     openAccountPage.openAccount();
 
     // Assert that the account was opened successfully
@@ -60,32 +57,23 @@ describe('Parabank Functional Test', () => {
   })
 
   it(' Transfer Funds', () => {
-    loginPage.visit();
-    const username = Cypress.env('username');
-    const password = Cypress.env('password');
-    loginPage.login(username, password);
     transferFundPage.transferFund();
 
+     // Assert that fund is successfully transferred
     cy.xpath("//h1[normalize-space()='Transfer Complete!']").should('be.visible');
   })
 
-  it('Request Loan', () => {
-    loginPage.visit();
-    const username = Cypress.env('username');
-    const password = Cypress.env('password');
-    loginPage.login(username, password);
-    
+  it('Request Loan', () => { 
     requestLoanPage.apply()
+
+     // Assert that loan is successfully requested
     cy.xpath("//h1[normalize-space()='Loan Request Processed']").should('be.visible');
   })
 
   it('Logout', () => {
-    loginPage.visit();
-    const username = Cypress.env('username');
-    const password = Cypress.env('password');
-    loginPage.login(username, password);
-
     homePage.logout();
+
+     // Assert that user is logged out
     cy.xpath("//h2[normalize-space()='Customer Login']").should('be.visible');
   })
 })
