@@ -25,16 +25,6 @@ describe('Parabank Functional Test', () => {
     cy.xpath("//h1[normalize-space()='Accounts Overview']").should('be.visible');
   });
 
-  it('Register New User with a unique username', () => {
-    let user = registerPage.generateUser();
-    registerPage.visit();
-    registerPage.register(user);
-
-    // Assert that the account was created successfully
-    cy.xpath("//p[contains(text(),'Your account was created successfully. You are now')]").should('be.visible');
-    cy.xpath(`//h1[normalize-space()='Welcome ${user.username}']`).should('be.visible');
-  })
-
   it('Invalid Login Credential', () => {
     homePage.logout();
     loginPage.visit();
@@ -68,6 +58,37 @@ describe('Parabank Functional Test', () => {
 
      // Assert that loan is successfully requested
     cy.xpath("//h1[normalize-space()='Loan Request Processed']").should('be.visible');
+  })
+
+  it('Register New User with a unique username', () => {
+    homePage.logout();
+    let user = registerPage.generateUser();
+    registerPage.visit();
+    registerPage.register(user);
+
+    // Assert that the account was created successfully
+    cy.xpath("//p[contains(text(),'Your account was created successfully. You are now')]").should('be.visible');
+    cy.xpath(`//h1[normalize-space()='Welcome ${user.username}']`).should('be.visible');
+
+    // const tryRegister = () => {
+    //   registerPage.visit();
+    //   registerPage.register(user);
+
+    //   registerPage.checkUsernameExists().then((exists) => {
+    //     if (exists) {
+    //       console.log('Username already exists, generating a new one');
+    //       randomUser.username = faker.internet.userName(); 
+    //       registerPage.usernameInput().clear(); 
+    //       tryRegister(); 
+    //     } else {
+    //       console.log('Username is available, registering the user');
+    //       cy.contains('Your account was created successfully').should('be.visible');
+    //       cy.get('h1').should('contain', `Welcome, ${randomUser.username}`);
+    //     }
+    //   });
+    // }
+
+    // tryRegister();
   })
 
   it('Logout', () => {

@@ -13,10 +13,11 @@ This project automates the testing of the Parabank website using Cypress and the
 
 ## Features
 
-- **Faker for Test Data:** Faker is used to generate dynamic test data such as usernames, addresses, and phone numbers.
-- **Username Uniqueness Check:** The automation script checks for existing usernames during registration and generates a unique username if needed.
+- **CI/CD Integration:** The project is integrated with CI/CD pipelines to automate the testing process, ensuring that tests run smoothly with each new code deployment.
 - **Retry Mechanism:** The retry mechanism is implemented to handle flaky tests and ensure reliable test execution.
 - **Daily Email Notifications:** GitHub Actions configuration includes a step to send daily email notifications with test results.
+- **Faker for Test Data:** Faker is used to generate dynamic test data such as usernames, addresses, and phone numbers.
+- **Username Uniqueness Check:** The automation script checks for existing usernames during registration and generates a unique username if needed.
 
 ## Project Setup
 
