@@ -31,7 +31,7 @@ jobs:
           password: ${{ secrets.EMAIL_PASSWORD }}
           subject: Shop APi Test Report
           to: orji@outlook.com
-          from: ndubuisiaso@gmail.com
+          from: dubuisiaso@gmail.com
           body: "Please find attached daily scheduled test report."
           content_type: text/html
           attachments: index.html
